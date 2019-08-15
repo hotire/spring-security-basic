@@ -18,4 +18,9 @@ public class ViewController {
     return "index";
   }
 
+  @GetMapping("/hello")
+  public String hello() {
+    return "hello";
+  }
+
 }

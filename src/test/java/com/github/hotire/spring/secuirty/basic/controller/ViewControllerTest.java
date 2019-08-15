@@ -19,8 +19,15 @@ public class ViewControllerTest {
   private MockMvc mockMvc;
 
   @Test
-  public void getInfo_isUnauthorized() throws Exception {
+  public void index() throws Exception {
     mockMvc.perform(get("/"))
+      .andExpect(status().isOk())
+      .andDo(print());
+  }
+
+  @Test
+  public void hello_isUnauthorized() throws Exception {
+    mockMvc.perform(get("/hello"))
       .andExpect(status().isUnauthorized())
       .andDo(print());
   }

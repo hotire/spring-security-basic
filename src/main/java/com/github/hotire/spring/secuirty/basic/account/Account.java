@@ -6,8 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.Getter;
 
-@Entity
 @Getter
+@Entity
 public class Account {
 
   @Id @GeneratedValue

@@ -24,4 +24,9 @@ public class AccountService implements UserDetailsService {
       .roles(account.getRole())
       .build();
   }
+
+  public Account create(Account account) {
+    account.encodePassword();
+    return accountRepository.save(account);
+  }
 }

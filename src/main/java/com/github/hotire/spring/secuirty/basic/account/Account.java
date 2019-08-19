@@ -19,4 +19,9 @@ public class Account {
   private String password;
 
   private String role;
+
+  public Account encodePassword() {
+    this.password = "{noop}" + this.password;
+    return this;
+  }
 }

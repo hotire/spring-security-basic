@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import lombok.Getter;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
 @Entity
@@ -20,8 +21,8 @@ public class Account {
 
   private String role;
 
-  public Account encodePassword() {
-    this.password = "{noop}" + this.password;
+  public Account encodePassword(PasswordEncoder passwordEncoder) {
+    this.password = passwordEncoder.encode(this.password);
     return this;
   }
 }

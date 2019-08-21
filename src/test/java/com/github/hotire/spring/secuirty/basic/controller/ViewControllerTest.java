@@ -1,5 +1,6 @@
 package com.github.hotire.spring.secuirty.basic.controller;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,6 +30,13 @@ public class ViewControllerTest {
   public void hello_isUnauthorized() throws Exception {
     mockMvc.perform(get("/hello"))
       .andExpect(status().isUnauthorized())
+      .andDo(print());
+  }
+
+  @Test
+  public void hello() throws Exception {
+    mockMvc.perform(get("/hello").with(user("hotire").roles("USER")))
+      .andExpect(status().isOk())
       .andDo(print());
   }
 }

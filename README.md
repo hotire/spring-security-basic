@@ -61,6 +61,10 @@ protected final UserDetails retrieveUser(String username,
 
 ### SecurityContextPersistenceFilter
 
+- SecurityContext 를 HTTP Session에 저장하여 사용하는 Filter
+- SecurityContextRepository 인터페이스 구현체를 교체하면 HTTP Session이 아닌 다른 곳에도 저장이 가능하다.
+(기본으로 HttpSessionSecurityContextRepository 사용한다)
+
 ```
 public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
@@ -87,10 +91,28 @@ public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
   ....					
 }
 
-
 ```
 
+### HttpSessionSecurityContextRepository
+
+
+```
+public SecurityContext loadContext(HttpRequestResponseHolder requestResponseHolder) {
+
+  ....
+  ....
+  SecurityContext context = readSecurityContextFromSession(httpSession);
+  ....
+  ....
+}
+```
+
+
 ### UsernamePasswordAuthenticationFilter
+
+- Form 인증을 처리하는 Filter
+- 인증된 Authentication 객체를 SecurityContextHolder 에 넣어준다. 
+
 
 ```
 public Authentication attemptAuthentication(HttpServletRequest request,
@@ -102,6 +124,10 @@ public Authentication attemptAuthentication(HttpServletRequest request,
 ```
 
 ### AbstractAuthenticationProcessingFilter
+
+UsernamePasswordAuthenticationFilter 의 부모 클래스로, 
+
+attemptAuthentication 메서드를 템플릿 메서드 패턴으로 호출함.
 
 ```
 

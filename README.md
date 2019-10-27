@@ -100,3 +100,26 @@ public Authentication attemptAuthentication(HttpServletRequest request,
   return this.getAuthenticationManager().authenticate(authRequest);			
 }
 ```
+
+### AbstractAuthenticationProcessingFilter
+
+```
+
+public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+			throws IOException, ServletException {
+  ....
+  ....
+  authResult = attemptAuthentication(request, response);
+  ....
+  successfulAuthentication(request, response, chain, authResult); 
+}
+
+protected void successfulAuthentication(HttpServletRequest request,
+			HttpServletResponse response, FilterChain chain, Authentication authResult)
+			throws IOException, ServletException {
+	....
+	....
+	SecurityContextHolder.getContext().setAuthentication(authResult);
+  ...
+}
+```

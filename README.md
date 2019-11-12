@@ -152,6 +152,4 @@ protected void successfulAuthentication(HttpServletRequest request,
 
 ### DelegatingFilterProxy
 
-- AbstractSecurityWebApplicationInitializer 을 사용해서 설정
-
-- Spring Boot 사용시, 
+- AbstractSecurityWebApplicationInitializer 을 사용해서 설정 (Spring Boot 사용시, SecurityAutoConfiguration) 

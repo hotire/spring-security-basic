@@ -219,3 +219,22 @@ protected void successfulAuthentication(HttpServletRequest request,
 - FilterChainProxy 를 springSecurityFilterChain 이라는 이름의 빈으로 등록한다.
 
 
+
+### AccessDecisionManager
+
+Access Control(인가) 결정을 내리는 인터페이스로, 구현체 3가지를 기본으로 제공한다.
+
+- AffirmativeBased : Voter 중 한명이라도 허용하면 허용 (기본전략)
+- ConsensusBased : 다수결 
+- UnanimousBased : 만장일치 
+
+
+AccessDecisionVoter
+
+- 해당 Authentication이 특정한 Object에 접근할 때 필요한 ConfigAttributes를 만족하는지 확인한다.
+
+- WebExpressionVoter: 웹 시큐리티에서 사용하는 기본 구현체, ROLE_Xxxx가 매치하는지 확인.
+
+- RoleHierarchyVoter: 계층형 ROLE 지원. ADMIN > MANAGER > USER
+
+

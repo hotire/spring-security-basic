@@ -30,7 +30,7 @@ Principal과 GrantAuthority 제공.
 인자로 받은 Authentication
  - 사용자가 입력한 인증에 필요한 정보(username, password)로 만든 객체. (폼 인증인 경우)
  - Authentication
-   - Principal: “keesun”
+   - Principal: “hotire”
    - Credentials: “123”
 
 유효한 인증인지 확인

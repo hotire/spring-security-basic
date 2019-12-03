@@ -5,9 +5,22 @@ study
 
 ## SecurityContextHolder
 
+SecurityContext 제공, 기본적으로 ThreadLocal을 사용한다.
+
 ### SecurityContext
+Authentication 제공 
 
 ### Authentication
+
+Principal과 GrantAuthority 제공.
+
+### Principal
+
+“누구"에 해당하는 정보. UserDetailsService에서 리턴한 객체(UserDetails 타입)
+
+### GrantAuthority
+
+“ROLE_USER”, “ROLE_ADMIN”등 Principal이 가지고 있는 “권한”을 나타낸다.
 
 
 ## 원리
@@ -78,6 +91,10 @@ protected final UserDetails retrieveUser(String username,
 }			
 			
 ```
+
+
+
+AuthenticationManager가 인증을 마친 뒤 리턴 받은 Authentication 객체의 행방은??
 
 
 ### SecurityContextPersistenceFilter
@@ -171,6 +188,34 @@ protected void successfulAuthentication(HttpServletRequest request,
 }
 ```
 
+
+### FilterChainProxy
+
+
+스프링 시큐리티가 제공하는 필터들
+1. WebAsyncManagerIntergrationFilter
+2. SecurityContextPersistenceFilter
+3. HeaderWriterFilter
+4. CsrfFilter
+5. LogoutFilter
+6. UsernamePasswordAuthenticationFilter
+7. DefaultLoginPageGeneratingFilter
+8. DefaultLogoutPageGeneratingFilter
+9. BasicAuthenticationFilter
+10. RequestCacheAwareFtiler
+11. SecurityContextHolderAwareReqeustFilter
+12. AnonymouseAuthenticationFilter
+13. SessionManagementFilter
+14. ExeptionTranslationFilter
+15. FilterSecurityInterceptor
+
+이 모든 필터는 FilterChainProxy가 호출한다.
+
+
 ### DelegatingFilterProxy
 
 - AbstractSecurityWebApplicationInitializer 을 사용해서 설정 (Spring Boot 사용시, SecurityAutoConfiguration) 
+
+- FilterChainProxy 를 springSecurityFilterChain 이라는 이름의 빈으로 등록한다.
+
+

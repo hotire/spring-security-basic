@@ -233,7 +233,7 @@ AccessDecisionVoter
 
 - 해당 Authentication이 특정한 Object에 접근할 때 필요한 ConfigAttributes를 만족하는지 확인한다.
 
-- WebExpressionVoter: 웹 시큐리티에서 사용하는 기본 구현체, ROLE_Xxxx가 매치하는지 확인.
+- WebExpressionVoter: 웹 시큐리티에서 사용하는 기본 구현체, ROLE_XXXX가 매치하는지 확인.
 
 - RoleHierarchyVoter: 계층형 ROLE 지원. ADMIN > MANAGER > USER
 

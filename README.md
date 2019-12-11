@@ -238,3 +238,22 @@ AccessDecisionVoter
 - RoleHierarchyVoter: 계층형 ROLE 지원. ADMIN > MANAGER > USER
 
 
+기본적으로 ADMIN 권한이 있더라도, USER 권한을 얻지 못한다.
+
+```
+ public AccessDecisionManager accessDecisionManager() {
+    final RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
+    roleHierarchy.setHierarchy("ROLE_ADMIN > ROLE_USER");
+
+    final DefaultWebSecurityExpressionHandler handler = new DefaultWebSecurityExpressionHandler();
+    handler.setRoleHierarchy(roleHierarchy);
+
+    final WebExpressionVoter voter = new WebExpressionVoter();
+    voter.setExpressionHandler(handler);
+
+    return new AffirmativeBased(ImmutableList.of(voter));
+  }
+```
+
+Custom AccessDecisionManager 을 만들어서 RoleHierarchyVoter 사용해보자. 
+

@@ -44,8 +44,9 @@ public class AccountControllerTest {
   @WithMockAdmin
   @Test
   public void hello_admin() throws Exception {
-    mockMvc.perform(get("/account/admin"))
+    mockMvc.perform(get("/account/hello"))
       .andExpect(status().isOk())
       .andDo(print());
   }
+
 }

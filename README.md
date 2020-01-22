@@ -257,3 +257,13 @@ AccessDecisionVoter
 
 Custom AccessDecisionManager 을 만들어서 RoleHierarchyVoter 사용해보자. 
 
+
+
+## Reactive Security 
+
+### Release Notes
+
+- 5.2.0 
+    - AuthorityReactiveAuthorizationManager.hasAnyRole이 지원된다. (Spring Boot 2.2.0 이상)
+    
+     

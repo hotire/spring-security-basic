@@ -1,6 +1,7 @@
 package com.github.hotire.spring.secuirty.basic.jwt;
 
-import com.sun.tools.javac.util.List;
+
+import com.google.common.collect.Lists;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,6 +13,6 @@ public class JwtAuthenticationConverter implements Converter<Jwt, AbstractAuthen
     public AbstractAuthenticationToken convert(Jwt jwt) {
         final String role = jwt.getClaim("role");
         // TODO Implement role
-        return new JwtAuthenticationToken(jwt, List.of(new SimpleGrantedAuthority(role)));
+        return new JwtAuthenticationToken(jwt, Lists.newArrayList(new SimpleGrantedAuthority(role)));
     }
 }

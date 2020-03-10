@@ -11,6 +11,7 @@ public class JwtAuthenticationConverter implements Converter<Jwt, AbstractAuthen
     @Override
     public AbstractAuthenticationToken convert(Jwt jwt) {
         final String role = jwt.getClaim("role");
+        // TODO Implement role
         return new JwtAuthenticationToken(jwt, List.of(new SimpleGrantedAuthority(role)));
     }
 }

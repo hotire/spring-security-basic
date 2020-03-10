@@ -20,10 +20,12 @@ public enum Role {
     NONE("NONE");
 
     private final String role;
+    private final String authority;
     private final List<SimpleGrantedAuthority> authorities;
 
     Role(final String role) {
-        this.role = "ROLE_" + role;
+        this.role = role;
+        this.authority = "ROLE_" + role;
         this.authorities = Lists.newArrayList(new SimpleGrantedAuthority(this.role));
     }
 

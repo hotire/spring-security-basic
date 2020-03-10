@@ -7,7 +7,8 @@ import java.util.List;
 
 public enum Role {
     USER("USER"),
-    ADMIN("ADMIN");
+    ADMIN("ADMIN"),
+    NONE("NONE")
     private final String role;
     private final List<SimpleGrantedAuthority> authorities;
 

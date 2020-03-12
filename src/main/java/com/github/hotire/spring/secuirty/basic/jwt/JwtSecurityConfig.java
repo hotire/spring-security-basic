@@ -13,6 +13,12 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.oauth2ResourceServer()
             .jwt()
-            .decoder(RSAJwtDecoder.withPublicKey(publishKey));
+            .decoder(RSAJwtDecoder.withPublicKey(publishKey))
+            .jwtAuthenticationConverter(new JwtAuthenticationConverter())
+            .and()
+            .and()
+            .authorizeRequests()
+            .anyRequest()
+            .permitAll();
     }
 }

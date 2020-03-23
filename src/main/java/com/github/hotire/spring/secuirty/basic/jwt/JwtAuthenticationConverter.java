@@ -1,7 +1,6 @@
 package com.github.hotire.spring.secuirty.basic.jwt;
 
 
-import com.google.common.collect.Lists;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -16,6 +15,6 @@ public class JwtAuthenticationConverter implements Converter<Jwt, AbstractAuthen
                                                         .map(Object::toString)
                                                         .map(Role::lookup)
                                                         .map(Role::getAuthorities)
-                                                        .orElse(Lists.newArrayList()));
+                                                        .orElse(Role.NONE.getAuthorities()));
     }
 }

@@ -12,7 +12,8 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        
+        http.anonymous().authorities(Role.NONE.getAuthority());
+
         http.oauth2ResourceServer()
             .jwt()
             .decoder(RSAJwtDecoder.withPublicKey(publishKey))

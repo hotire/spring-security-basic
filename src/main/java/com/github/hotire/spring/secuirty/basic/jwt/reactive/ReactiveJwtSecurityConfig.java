@@ -9,10 +9,10 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 @EnableReactiveMethodSecurity
 public class ReactiveJwtSecurityConfig {
     @Bean
-    public SecurityWebFilterChain filter(final ServerHttpSecurity serverHttpSecurity) {
-        serverHttpSecurity.csrf().disable();
-        serverHttpSecurity.anonymous().authorities(Role.NONE.getAuthority());
+    public SecurityWebFilterChain filter(final ServerHttpSecurity security) {
+        security.csrf().disable();
+        security.anonymous().authorities(Role.NONE.getAuthority());
 
-        return serverHttpSecurity.build();
+        return security.build();
     }
 }

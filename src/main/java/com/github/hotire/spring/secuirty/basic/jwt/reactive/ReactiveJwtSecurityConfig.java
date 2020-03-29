@@ -11,6 +11,8 @@ public class ReactiveJwtSecurityConfig {
     @Bean
     public SecurityWebFilterChain filter(final ServerHttpSecurity serverHttpSecurity) {
         serverHttpSecurity.csrf().disable();
+        serverHttpSecurity.anonymous().authorities(Role.NONE.getAuthority());
+
         return serverHttpSecurity.build();
     }
 }

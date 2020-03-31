@@ -1,5 +1,6 @@
 package com.github.hotire.spring.secuirty.basic.jwt.reactive;
 
+import com.github.hotire.spring.secuirty.basic.jwt.JwtAuthenticationConverter;
 import com.github.hotire.spring.secuirty.basic.jwt.RSAJwtDecoder;
 import com.github.hotire.spring.secuirty.basic.jwt.Role;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,7 +24,7 @@ public class ReactiveJwtSecurityConfig {
         return security.oauth2ResourceServer()
                        .jwt()
                        .publicKey(RSAJwtDecoder.withPublicKey(publicKey).getRsaPublicKey())
-                       .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverter())
+                       .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverter(new JwtAuthenticationConverter()))
                        .and()
                        .and()
                        .build();

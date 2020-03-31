@@ -6,8 +6,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("${jwt.publish-key}")
-    private String publishKey;
+    @Value("${jwt.public-key}")
+    private String publicKey;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -16,7 +16,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.oauth2ResourceServer()
             .jwt()
-            .decoder(RSAJwtDecoder.withPublicKey(publishKey))
+            .decoder(RSAJwtDecoder.withPublicKey(publicKey))
             .jwtAuthenticationConverter(new JwtAuthenticationConverter())
             .and()
             .and()

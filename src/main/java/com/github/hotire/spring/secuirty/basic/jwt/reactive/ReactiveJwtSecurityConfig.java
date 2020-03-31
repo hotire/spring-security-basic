@@ -16,13 +16,13 @@ import java.security.spec.InvalidKeySpecException;
 @EnableReactiveMethodSecurity
 public class ReactiveJwtSecurityConfig {
     @Bean
-    public SecurityWebFilterChain filter(@Nonnull final ServerHttpSecurity security, @Nonnull  @Value("${jwt.publish-key}") String publishKey) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeySpecException {
+    public SecurityWebFilterChain filter(@Nonnull final ServerHttpSecurity security, @Nonnull  @Value("${jwt.publish-key}") String publicKey) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeySpecException {
         security.csrf().disable();
         security.anonymous().authorities(Role.NONE.getAuthority());
 
         return security.oauth2ResourceServer()
                        .jwt()
-                       .publicKey(RSAJwtDecoder.withPublicKey(publishKey).getRsaPublicKey())
+                       .publicKey(RSAJwtDecoder.withPublicKey(publicKey).getRsaPublicKey())
                        .and()
                        .and()
                        .build();

@@ -23,6 +23,7 @@ public class ReactiveJwtSecurityConfig {
         return security.oauth2ResourceServer()
                        .jwt()
                        .publicKey(RSAJwtDecoder.withPublicKey(publicKey).getRsaPublicKey())
+                       .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverter())
                        .and()
                        .and()
                        .build();

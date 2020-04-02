@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Nonnull;
+import java.util.Objects;
 
 @RequiredArgsConstructor
 public class ReactiveJwtAuthenticationConverter implements Converter<Jwt, Mono<AbstractAuthenticationToken>> {
@@ -18,6 +19,6 @@ public class ReactiveJwtAuthenticationConverter implements Converter<Jwt, Mono<A
 
     @Override
     public Mono<AbstractAuthenticationToken> convert(@Nonnull Jwt jwt) {
-        return Mono.just(getDelegate().convert(jwt));
+        return Mono.just(Objects.requireNonNull(getDelegate().convert(jwt)));
     }
 }

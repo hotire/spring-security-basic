@@ -27,6 +27,10 @@ public class ReactiveJwtSecurityConfig {
                        .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverter(new JwtAuthenticationConverter()))
                        .and()
                        .and()
+                       .authorizeExchange()
+                       .anyExchange()
+                       .hasAnyRole(Role.NONE.getRole())
+                       .and()
                        .build();
     }
 }

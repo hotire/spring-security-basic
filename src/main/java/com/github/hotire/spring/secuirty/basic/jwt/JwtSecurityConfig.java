@@ -21,6 +21,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .and()
             .authorizeRequests()
+            .mvcMatchers("/account**").hasAnyRole(Role.USER.getRole())
             .anyRequest()
             .hasAnyRole(Role.NONE.getRole());
     }

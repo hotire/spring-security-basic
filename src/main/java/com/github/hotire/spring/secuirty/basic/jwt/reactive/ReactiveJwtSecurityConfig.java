@@ -5,9 +5,13 @@ import com.github.hotire.spring.secuirty.basic.jwt.RSAJwtDecoder;
 import com.github.hotire.spring.secuirty.basic.jwt.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import reactor.core.publisher.Mono;
 
 import javax.annotation.Nonnull;
 import java.io.UnsupportedEncodingException;
@@ -25,7 +29,7 @@ public class ReactiveJwtSecurityConfig {
         return security.oauth2ResourceServer()
                        .jwt()
                        .publicKey(RSAJwtDecoder.withPublicKey(publicKey).getRsaPublicKey())
-                       .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverter(new JwtAuthenticationConverter()))
+                       .jwtAuthenticationConverter(reactiveJwtConverter())
                        .and()
                        .and()
                        .authorizeExchange()
@@ -34,4 +38,9 @@ public class ReactiveJwtSecurityConfig {
                        .and()
                        .build();
     }
+
+    protected Converter<Jwt, ? extends Mono<? extends AbstractAuthenticationToken>> reactiveJwtConverter() {
+        return new ReactiveJwtAuthenticationConverter(new JwtAuthenticationConverter());
+    }
+
 }

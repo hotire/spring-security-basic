@@ -16,8 +16,9 @@ import java.security.spec.InvalidKeySpecException;
 
 @EnableReactiveMethodSecurity
 public class ReactiveJwtSecurityConfig {
+
     @Bean
-    public SecurityWebFilterChain filter(@Nonnull final ServerHttpSecurity security, @Nonnull  @Value("${jwt.publish-key}") String publicKey) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeySpecException {
+    public SecurityWebFilterChain filter(@Nonnull final ServerHttpSecurity security, @Nonnull @Value("${jwt.publish-key}") final String publicKey) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeySpecException {
         security.csrf().disable();
         security.anonymous().authorities(Role.NONE.getAuthority());
 

@@ -9,10 +9,12 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
+import static com.github.hotire.spring.secuirty.basic.jwt.Role.ROLE;
+
 public class JwtAuthenticationConverter implements Converter<Jwt, AbstractAuthenticationToken> {
     @Override
     public AbstractAuthenticationToken convert(@Nonnull Jwt jwt) {
-        return new JwtAuthenticationToken(jwt,  Optional.ofNullable(jwt.getClaim("role"))
+        return new JwtAuthenticationToken(jwt,  Optional.ofNullable(jwt.getClaim(ROLE))
                                                         .map(Object::toString)
                                                         .map(Role::lookup)
                                                         .map(Role::getAuthorities)

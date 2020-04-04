@@ -22,6 +22,7 @@ public enum Role {
     private final String role;
     private final String authority;
     private final List<SimpleGrantedAuthority> authorities;
+    public static final String ROLE = "role";
 
     Role(final String role) {
         this.role = role;

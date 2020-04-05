@@ -267,3 +267,7 @@ Custom AccessDecisionManager 을 만들어서 RoleHierarchyVoter 사용해보자
     - AuthorityReactiveAuthorizationManager.hasAnyRole이 지원된다. (Spring Boot 2.2.0 이상)
     
      
+     
+## JWT OAuth
+
+https://jwt.io/     

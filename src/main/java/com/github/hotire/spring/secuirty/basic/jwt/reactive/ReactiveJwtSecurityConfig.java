@@ -33,6 +33,7 @@ public class ReactiveJwtSecurityConfig {
                        .and()
                        .and()
                        .authorizeExchange()
+                       .pathMatchers("/account**").hasAnyRole(Role.USER.getRole())
                        .anyExchange()
                        .hasAnyRole(Role.NONE.getRole())
                        .and()

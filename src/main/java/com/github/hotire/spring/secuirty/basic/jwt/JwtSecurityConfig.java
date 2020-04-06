@@ -1,6 +1,7 @@
 package com.github.hotire.spring.secuirty.basic.jwt;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +12,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 /**
  * https://jwt.io/
  */
+@Configuration
 @EnableWebSecurity
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -29,7 +31,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .and()
             .authorizeRequests()
-            .mvcMatchers("/account**").hasAnyRole(Role.USER.getRole())
+            .mvcMatchers("/jwt**").hasAnyRole(Role.USER.getRole())
             .anyRequest()
             .hasAnyRole(Role.NONE.getRole());
     }
@@ -37,4 +39,5 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
     protected Converter<Jwt, ? extends AbstractAuthenticationToken> jwtConverter() {
         return new JwtAuthenticationConverter();
     }
+
 }

@@ -27,7 +27,7 @@ public enum Role {
     Role(final String role) {
         this.role = role;
         this.authority = "ROLE_" + role;
-        this.authorities = Sets.newHashSet(new SimpleGrantedAuthority(this.role));
+        this.authorities = Sets.newHashSet(new SimpleGrantedAuthority(this.authority));
     }
 
     private static final Map<String, Role> ROLE_MAP = Arrays.stream(Role.values()).collect(toMap(Role::getRole, Function.identity()));

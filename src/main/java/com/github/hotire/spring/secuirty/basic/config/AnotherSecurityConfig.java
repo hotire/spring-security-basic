@@ -1,13 +1,11 @@
 package com.github.hotire.spring.secuirty.basic.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 
-@Order
-@Configuration
+//@Order(99)
+//@Configuration
 public class AnotherSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override

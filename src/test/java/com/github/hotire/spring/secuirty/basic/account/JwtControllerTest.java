@@ -26,4 +26,11 @@ class JwtControllerTest {
                .andExpect(status().isOk())
                .andDo(print());
     }
+
+    @Test
+    void isUnauthorized() throws Exception {
+        mockMvc.perform(get("/jwt")).
+                andExpect(status().isUnauthorized())
+               .andDo(print());
+    }
 }

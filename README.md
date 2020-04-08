@@ -280,7 +280,7 @@ PAYLOAD
 ```javascript
 {
   "id": "1234567890",
-  "role": ["John Doe"],
+  "role": ["USER"],
   "iat": 1516239022
 }
 

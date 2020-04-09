@@ -22,6 +22,8 @@ public enum Role {
     private final String role;
     private final String authority;
     private final Set<SimpleGrantedAuthority> authorities;
+
+    private static final Map<String, Role> ROLE_MAP = Arrays.stream(Role.values()).collect(toMap(Role::getRole, Function.identity()));
     public static final String ROLE = "role";
 
     Role(final String role) {
@@ -29,8 +31,6 @@ public enum Role {
         this.authority = "ROLE_" + role;
         this.authorities = Sets.newHashSet(new SimpleGrantedAuthority(this.authority));
     }
-
-    private static final Map<String, Role> ROLE_MAP = Arrays.stream(Role.values()).collect(toMap(Role::getRole, Function.identity()));
 
     public static Role lookup(final String role) {
         return Optional.ofNullable(ROLE_MAP.get(role)).orElse(NONE);

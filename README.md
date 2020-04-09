@@ -270,11 +270,11 @@ Custom AccessDecisionManager 을 만들어서 RoleHierarchyVoter 사용해보자
     
 ## JWT OAuth
 
-https://jwt.io/     
+- JWT : https://jwt.io/     
 
+- RSA Key : https://travistidwell.com/jsencrypt/demo/
 
 ### JWT
-
 
 PAYLOAD
 ```javascript

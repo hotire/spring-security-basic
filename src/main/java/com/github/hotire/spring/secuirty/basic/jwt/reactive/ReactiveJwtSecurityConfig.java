@@ -4,6 +4,7 @@ import com.github.hotire.spring.secuirty.basic.jwt.JwtAuthenticationConverter;
 import com.github.hotire.spring.secuirty.basic.jwt.RSAJwtDecoder;
 import com.github.hotire.spring.secuirty.basic.jwt.Role;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -18,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
+@ConditionalOnProperty(prefix = "hotire.security", value = "enabled", matchIfMissing = true)
 @EnableReactiveMethodSecurity
 public class ReactiveJwtSecurityConfig {
 

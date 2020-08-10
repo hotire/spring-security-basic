@@ -2,6 +2,12 @@
 
 study
 
+## @EnableWebSecurity
+
+### AuthenticationConfiguration
+
+https://blog.naver.com/gngh0101/222056047335
+
 
 ## SecurityContextHolder
 

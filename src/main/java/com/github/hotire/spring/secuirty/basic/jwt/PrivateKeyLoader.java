@@ -15,13 +15,17 @@ import java.util.Enumeration;
 
 public class PrivateKeyLoader {
 
+
+    private static final String PKCS_1_HEADER = "-----BEGIN RSA PRIVATE KEY-----\n";
+    private static final String PKCS_1_FOOT = "-----END RSA PRIVATE KEY-----";
+
     public static PrivateKey load(final String key) {
-        String privKeyPEM = key.replace(
-                "-----BEGIN RSA PRIVATE KEY-----\n", "")
-                               .replace("-----END RSA PRIVATE KEY-----", "");
+        String privateKey = key.replace(
+                PKCS_1_HEADER, "")
+                               .replace(PKCS_1_FOOT, "");
 
         // Base64 decode the data
-        byte[] encodedPrivateKey = Base64.getDecoder().decode(privKeyPEM);
+        byte[] encodedPrivateKey = Base64.getDecoder().decode(privateKey);
 
         try {
             ASN1Sequence primitive = (ASN1Sequence) ASN1Sequence
@@ -47,8 +51,7 @@ public class PrivateKeyLoader {
 
             RSAPrivateKeySpec spec = new RSAPrivateKeySpec(modulus, privateExponent);
             KeyFactory kf = KeyFactory.getInstance("RSA");
-            PrivateKey pk = kf.generatePrivate(spec);
-            return pk;
+            return kf.generatePrivate(spec);
         } catch (IOException e2) {
             throw new IllegalStateException();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {

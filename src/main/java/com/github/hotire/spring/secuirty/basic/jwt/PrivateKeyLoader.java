@@ -20,41 +20,37 @@ public class PrivateKeyLoader {
     private static final String PKCS_1_FOOT = "-----END RSA PRIVATE KEY-----";
 
     public static PrivateKey load(final String key) {
-        String privateKey = key.replace(
-                PKCS_1_HEADER, "")
-                               .replace(PKCS_1_FOOT, "");
+        final String privateKey = key.replace(PKCS_1_HEADER, "")
+                                     .replace(PKCS_1_FOOT, "");
 
         // Base64 decode the data
-        byte[] encodedPrivateKey = Base64.getDecoder().decode(privateKey);
+        final byte[] encodedPrivateKey = Base64.getDecoder().decode(privateKey);
 
         try {
-            ASN1Sequence primitive = (ASN1Sequence) ASN1Sequence
-                    .fromByteArray(encodedPrivateKey);
-            Enumeration<?> e = primitive.getObjects();
-            BigInteger v = ((DERInteger) e.nextElement()).getValue();
+            final ASN1Sequence primitive = (ASN1Sequence) ASN1Sequence.fromByteArray(encodedPrivateKey);
+            final Enumeration<?> e = primitive.getObjects();
+            final BigInteger v = ((DERInteger) e.nextElement()).getValue();
 
-            int version = v.intValue();
+            final int version = v.intValue();
             if (version != 0 && version != 1) {
                 throw new IllegalArgumentException("wrong version for RSA private key");
             }
             /**
              * In fact only modulus and private exponent are in use.
              */
-            BigInteger modulus = ((DERInteger) e.nextElement()).getValue();
-            BigInteger publicExponent = ((DERInteger) e.nextElement()).getValue();
-            BigInteger privateExponent = ((DERInteger) e.nextElement()).getValue();
-            BigInteger prime1 = ((DERInteger) e.nextElement()).getValue();
-            BigInteger prime2 = ((DERInteger) e.nextElement()).getValue();
-            BigInteger exponent1 = ((DERInteger) e.nextElement()).getValue();
-            BigInteger exponent2 = ((DERInteger) e.nextElement()).getValue();
-            BigInteger coefficient = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger modulus = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger publicExponent = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger privateExponent = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger prime1 = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger prime2 = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger exponent1 = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger exponent2 = ((DERInteger) e.nextElement()).getValue();
+            final BigInteger coefficient = ((DERInteger) e.nextElement()).getValue();
 
-            RSAPrivateKeySpec spec = new RSAPrivateKeySpec(modulus, privateExponent);
-            KeyFactory kf = KeyFactory.getInstance("RSA");
+            final RSAPrivateKeySpec spec = new RSAPrivateKeySpec(modulus, privateExponent);
+            final KeyFactory kf = KeyFactory.getInstance("RSA");
             return kf.generatePrivate(spec);
-        } catch (IOException e2) {
-            throw new IllegalStateException();
-        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+        } catch (IOException | NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new IllegalStateException(e);
         }
     }

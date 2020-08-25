@@ -15,7 +15,6 @@ import java.util.Enumeration;
 
 public class PrivateKeyLoader {
 
-
     private static final String PKCS_1_HEADER = "-----BEGIN RSA PRIVATE KEY-----\n";
     private static final String PKCS_1_FOOT = "-----END RSA PRIVATE KEY-----";
 

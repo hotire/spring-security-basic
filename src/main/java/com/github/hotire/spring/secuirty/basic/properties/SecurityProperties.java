@@ -20,6 +20,10 @@ public class SecurityProperties {
     private List<Role> anyRequestRoles;
     private Map<Role, String> authenticationTokens;
 
+    public List<PathRole> getPathRoles() {
+        return Optional.ofNullable(pathRoles).orElseGet(List::of);
+    }
+
     @Data
     public static class PathRole {
         private HttpMethod httpMethod;

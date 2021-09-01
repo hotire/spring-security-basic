@@ -1,26 +1,28 @@
 package com.github.hotire.spring.secuirty.basic.jwt.reactive;
 
-import com.github.hotire.spring.secuirty.basic.jwt.JwtAuthenticationConverter;
-import com.github.hotire.spring.secuirty.basic.jwt.RSAJwtDecoder;
-import com.github.hotire.spring.secuirty.basic.jwt.Role;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
+import javax.annotation.Nonnull;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+
+import com.github.hotire.spring.secuirty.basic.jwt.JwtAuthenticationConverter;
+import com.github.hotire.spring.secuirty.basic.jwt.RSAJwtDecoder;
+import com.github.hotire.spring.secuirty.basic.jwt.Role;
+
 import reactor.core.publisher.Mono;
 
-import javax.annotation.Nonnull;
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-
 @ConditionalOnProperty(prefix = "hotire.security", value = "enabled", matchIfMissing = true)
-@EnableReactiveMethodSecurity
+//@EnableReactiveMethodSecurity
 public class ReactiveJwtSecurityConfig {
 
     @Bean

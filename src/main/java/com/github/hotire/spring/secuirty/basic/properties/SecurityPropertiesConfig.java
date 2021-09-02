@@ -38,6 +38,6 @@ public class SecurityPropertiesConfig extends WebSecurityConfigurerAdapter {
                                                .hasAnyRole(pathRole.getRoles().stream().map(Role::getRole).toArray(String[]::new)));
 
         registry.anyRequest()
-                .permitAll();
+                .hasAnyRole(properties.getAnyRequestRoles().stream().map(Role::getRole).toArray(String[]::new));
     }
 }

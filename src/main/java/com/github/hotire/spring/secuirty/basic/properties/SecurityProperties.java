@@ -19,11 +19,6 @@ public class SecurityProperties {
     private List<PathRole> pathRoles;
     private List<Role> anyRequestRoles;
     private Map<Role, String> authenticationTokens;
-
-    public List<PathRole> getPathRoles() {
-        return Optional.ofNullable(pathRoles).orElseGet(List::of);
-    }
-
     @Data
     public static class PathRole {
         private HttpMethod httpMethod;
@@ -41,5 +36,9 @@ public class SecurityProperties {
         public List<Role> getRoles() {
             return Optional.ofNullable(roles).orElseGet(List::of);
         }
+    }
+
+    public List<PathRole> getPathRoles() {
+        return Optional.ofNullable(pathRoles).orElseGet(List::of);
     }
 }
